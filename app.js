@@ -1,7 +1,7 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
-// require("dotenv").config();
+
 
 const express = require("express");
 const path = require("path");
@@ -22,8 +22,7 @@ const userRoutes = require("./routes/users.js");
 const campgroundRoutes = require("./routes/campground.js");
 const reviewRoutes = require("./routes/reviews.js");
 
-const dbUrl = "mongodb://localhost:27017/yelp-camp";
-// "mongodb://localhost:27017/yelp-camp"
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -83,18 +82,19 @@ app.use(
     })
 );
 
+const secret = process.env.SECRET || "thisshouldbeabettersecret";
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 3600, //this is in seconds,
     crypto: {
-        secret: "thisshouldbeabettersecret",
+        secret,
     },
 });
 
 const sessionConfig = {
     store,
     name: "_ccid",
-    secret: "thisshouldbeabettersecret",
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
