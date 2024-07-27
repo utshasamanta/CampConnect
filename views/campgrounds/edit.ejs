@@ -43,13 +43,6 @@
                     />
                 </div>
             </div>
-            <div>
-                <label for="image">Add images</label>
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="image" name="image" multiple>
-                </div>
-            </div>
-
             <!-- <div class="mb-3">
                 <label class="form-label" for="image">Add Images</label>
                 <br>
@@ -64,6 +57,12 @@
                     name="campground[description]"
                     required
                 ><%= ground.description %></textarea>
+            </div>
+            <div>
+                <label for="image">Add images</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="image" name="image" multiple>
+                </div>
             </div>
             <div class="mb-3">
                 <% ground.images.forEach((img, i) => { %>
