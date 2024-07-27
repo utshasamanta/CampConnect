@@ -11,7 +11,7 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         folder: "CampConnect",
-        allowedFormats: ["jpeg", "png", "jpg"],
+        allowedFormats: ["png", "jpeg", "jpeg"],
     },
 });
 
